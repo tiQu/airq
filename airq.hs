@@ -29,17 +29,15 @@ main = do
 
   case ma of
     Nothing -> print "Error parsing local JSON file"
-    Just a -> (putStrLn.queryAirQuality) a
+    Just a  -> queryAirQuality a
 
-queryAirQuality a = (show.areacode) a
-
-{-
-queryAirQuality :: IO ()
-queryAirQuality a = do
+queryAirQuality :: AreaCode -> IO ()
+queryAirQuality a = print ((show.areacode) a)
+  --do
+  {-
   httpman <- H.newManager H.tlsManagerSettings
   --localFile.location
   let encodedQueryString = H.parseRequest ("https://api.weather.gc.ca/collections/aqhi-forecasts-realtime/items/AQ_FCST-" ++ a.areacode ++ "-202309030000-202309030000?f=json")
   let req = H.setQueryString [("q", Just "r")] encodedQueryString
   response <- H.httpLbs req httpman
-  print response
--}
+  print response-}
